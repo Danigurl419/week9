@@ -1,115 +1,56 @@
-import random 
+Greet the user and provide instructions 
+def main():
+def start_adventure():
+    input("Press Enter to start your adventure with Elena Martinez...")
+    print(f"Welcome to Elena's Adventure in Blackwood Manor!")
+    print(f"In this application, you'll answer a series of questions to create a unique story featuring Elena Martinez.")
+    print(f"You will be asked about the weather, the time period, a supernatural element, Elena's companion, and her motivation for exploring the mansion.”)
+print(f“After typing your answer, press the enter key”)
+Input(“f\nPress the enter key to continue…”)
+    
+    print("Welcome to the adventure of Elena Martinez, a 16-year-old aspiring photographer with a curious nature.")
+    print("You find yourself at the abandoned Blackwood Manor, a sprawling Victorian mansion shrouded in mystery.")
+    print("As the sun sets, Elena carefully climbs through a broken window, her vintage Polaroid ready to capture anything unusual.")
 
-def main(): 
-    print("Welcome to Elena's Adventure in Blackwood Manor!") 
-    print("In this application, you'll answer a series of questions to create a unique story featuring Elena Martinez.")
+    footsteps = input("You hear footsteps upstairs. Will you follow the sound upstairs? (yes/no) ")
 
-    while True: 
-        # Collect user input
-        user_data = collect_user_data()
+    if footsteps.lower() == 'yes':
+        print("You bravely ascend the stairs, heart racing.")
+        followed_footsteps = True
+    else:
+        print("You decide to exit the mansion immediately, feeling a chill down your spine.")
+        followed_footsteps = False
 
-        print("Meet our main character: Elena Martinez, a 16-year-old aspiring photographer with a curious nature and her trusty vintage Polaroid camera.") 
-        print("She has long dark hair usually worn in a messy bun and carries her grandmother's old leather messenger bag.")
+    diary = input("You find an old diary. Will you read it and take it with you? (yes/no) ")
 
-        # Generate the story based on user input 
-        story = generate_story(user_data) 
-        
-        # Output the story 
-        print("\nHere is your story:") 
-        print(story) 
+    if diary.lower() == 'yes':
+        print("You carefully open the diary, intrigued by its contents.")
+        read_diary = True
+    else:
+        print("You leave the diary untouched, respecting its secrets.")
+        read_diary = False
 
-        # Ask if the user wants to play again 
-        play_again = input("\nDo you want to create another story? (yes/no): ").strip().lower() 
-        while play_again not in ['yes', 'no']: 
-            play_again = input("Please answer 'yes' or 'no': ").strip().lower() 
-        if play_again == 'no': 
-            break 
+    weather = input("Is it raining, foggy, or clear outside? ")
+    while weather not in ['raining', 'foggy', 'clear']:
+        weather = input("Please provide valid weather conditions (raining, foggy, clear): ")
 
-def collect_user_data(): 
-    user_data = {} 
+    decade = input("What decade would you like the mansion's mystery to be from: 1920s, 1950s, or 1980s? ")
+    supernatural = input("What type of supernatural occurrence would you prefer: ghosts, time travel, or ancient curses? ")
+    companion = input("Should Elena have a friend with her: best friend, stray cat, or local history buff? ")
+    motivation = input("Why is Elena really investigating the mansion: school project, family connection, or local legend? ")
 
-    # Collect user inputs for the story
-    user_data['weather'] = get_weather() 
-    user_data['time_period'] = get_time_period() 
-    user_data['supernatural'] = get_supernatural() 
-    user_data['companion'] = get_companion() 
-    user_data['motivation'] = get_motivation() 
+    # Determine the ending based on choices
+    if followed_footsteps and read_diary:
+        print("As the Guardian, you help lost souls find peace.")
+    elif followed_footsteps and not read_diary:
+        print("You solve the town's oldest mystery.")
+    else:
+        print("You navigate the complexities of being trapped in time.")
 
-    return user_data 
-
-def get_weather(): 
-    while True: 
-        weather = input("What is the weather like? (raining/foggy/clear): ").strip().lower() 
-        if weather in ['raining', 'foggy', 'clear']: 
-            return weather 
-        print("Invalid input. Please enter 'raining', 'foggy', or 'clear'.") 
-
-def get_time_period(): 
-    while True: 
-        time_period = input("What decade would you like the mansion's mystery to be from? (1920s/1950s/1980s): ").strip().lower() 
-        if time_period in ['1920s', '1950s', '1980s']: 
-            return time_period 
-        print("Invalid input. Please enter '1920s', '1950s', or '1980s'.") 
-
-def get_supernatural(): 
-    while True: 
-        supernatural = input("What type of supernatural occurrence would you prefer? (ghosts/time travel/ancient curses): ").strip().lower() 
-        if supernatural in ['ghosts', 'time travel', 'ancient curses']: 
-            return supernatural 
-        print("Invalid input. Please enter 'ghosts', 'time travel', or 'ancient curses'.") 
-
-def get_companion(): 
-    while True: 
-        companion = input("Should Elena have a companion with her? (best friend/stray cat/local history buff): ").strip().lower() 
-        if companion in ['best friend', 'stray cat', 'local history buff']: 
-            return companion 
-        print("Invalid input. Please enter 'best friend', 'stray cat', or 'local history buff'.") 
-
-def get_motivation(): 
-    while True: 
-        motivation = input("Why is Elena investigating the mansion? (school project/family connection/local legend): ").strip().lower() 
-        if motivation in ['school project', 'family connection', 'local legend']: 
-            return motivation 
-        print("Invalid input. Please enter 'school project', 'family connection', or 'local legend'.") 
-
-def generate_story(user_data): 
-    story = f"On a {user_data['weather']} evening, 16-year-old Elena Martinez, an aspiring photographer, found herself drawn to the abandoned Blackwood Manor. As she climbed through a broken window with her vintage Polaroid camera in hand, she felt a thrill of excitement mixed with fear.\n\n" 
-
-    story += f"The old mansion, known for strange lights flickering in its upper windows, loomed over her. She had always heard tales of the mysteries buried within its walls, particularly during the {user_data['time_period']}.\n\n" 
-
-    # First decision point 
-    decision1 = input("Elena hears footsteps upstairs. Should she follow the sound upstairs? (yes/no): ").strip().lower() 
-    while decision1 not in ['yes', 'no']: 
-        decision1 = input("Please answer 'yes' or 'no': ").strip().lower() 
-
-    if decision1 == 'yes': 
-        story += "Driven by curiosity, Elena decided to follow the sound upstairs. Each creak of the wooden stairs echoed her racing heartbeat.\n\n" 
-    else: 
-        story += "Feeling a chill run down her spine, Elena opted to exit the mansion immediately. As she turned to leave, a whisper of a voice beckoned her to stay.\n\n" 
-
-    # Find the diary 
-    story += "As she explored the dimly lit rooms, Elena stumbled upon an old diary resting on a dusty table. Its pages were yellowed and fragile, filled with the ramblings of a long-gone resident.\n\n" 
-
-    decision2 = input("Should Elena read the diary and take it with her? (yes/no): ").strip().lower() 
-    while decision2 not in ['yes', 'no']: 
-        decision2 = input("Please answer 'yes' or 'no': ").strip().lower() 
-
-    if decision2 == 'yes': 
-        story += "Elena carefully picked up the diary, her fingers tracing the faded cover. She could feel secrets bubbling within her, waiting to be unleashed.\n\n" 
-    else: 
-        story += "She decided to leave the diary where it was, feeling that some secrets were better left untouched.\n\n" 
-
-    # Determine ending 
-    ending_choice = random.choice(["The Guardian", "The Mystery Solved", "The Time Slip"]) 
-
-    if ending_choice == "The Guardian": 
-        story += "Elena soon discovered that she possessed a supernatural ability to communicate with spirits. As she documented their stories, she became the protector of the mansion, guiding lost souls to find peace.\n" 
-    elif ending_choice == "The Mystery Solved": 
-        story += "As she delved deeper, Elena uncovered evidence of an old crime that led to the resolution of a decades-old missing persons case, bringing closure to the town's oldest mystery.\n" 
-    else: 
-        story += "Elena became trapped between the past and present, navigating two time periods and learning the true history of Blackwood Manor, striving to find her way back home.\n" 
-
-    return story 
-
-if __name__ == "__main__": 
-    main()
+while True:
+    start_adventure()
+    replay = input("Do you want to start over? (yes/no) ")
+    if replay.lower() != 'yes':
+        break
+ 
+\
